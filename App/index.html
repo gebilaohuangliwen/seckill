@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<title>限时疯抢</title>
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+</head>
+<style type="text/css">
+*{margin:0px;padding:0px;font-size:12px;font-family:Microsoft YaHei;}
+body{background:#FAFAFA;}
+img{border:0px;}
+ul li{list-style-type:none;}
+a{text-decoration:none;}
+.cle{clear:both;}
+#limseckill{
+	min-width:320px;
+	max-width:640px;
+	background:rgba(245,245,245,1);
+	margin:0px auto;
+}
+#limseckill .nav{
+	width:100%;
+	height:40px;
+	display:flex;
+	text-align:center;
+	background:rgba(51,51,51,1);
+}
+#limseckill .nav a{
+	position:relative;
+	top:0;
+	left:0;
+	display:block;
+	flex:1;
+	height:100%;
+	line-height:39px;
+	font-size:14px;
+	color:#FFF;
+}
+#limseckill .nav .navactive{
+	background:rgba(216,44,42,1);
+}
+#limseckill .nav .navactive span{
+	display:block;
+}
+#limseckill .nav a span{
+	position:absolute;
+	top:40px;
+	left:49%;
+	display:none;
+	border:6px solid rgba(216,44,42,1);
+	border-color:rgba(216,44,42,1) transparent transparent transparent;
+}
+#limseckill .smark{
+	display:none;
+	width:100%;
+	height:40px;
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+	line-height:56px;
+	background:#FFF;
+}
+#limseckill .count{
+	width:100%;
+	height:40px;
+	display:flex;
+	line-height:39px;
+	background-color:#FFF;
+}
+#limseckill .count .count_desc{
+	flex:1;
+	padding-right:10px;
+	font-size:14px;
+	text-align:right;
+	color:rgba(114,114,114,1);
+}
+#limseckill .count .count_num{
+	flex:1;
+	text-align:left;
+}
+#limseckill .count .count_num span{
+	font-size:13px;
+	font-weight:bold;
+	padding:4px;
+	color:#FFF;
+	border-radius:5px;
+	background:rgba(216,44,42,1);
+}
+#limseckill .count .count_num strong{
+	color:rgba(216,44,42,1);
+}
+#limseckill .list{
+	width:100%;
+	overflow:hidden;
+}
+#limseckill .list .list_box{
+	display:flex;
+	width:100%;
+	height:106px;
+	margin-top:10px;
+	background:#FFF;
+	overflow:hidden;
+}
+#limseckill .list .list_box .img{
+	position:relative;
+	top:0;
+	left:0;
+	width:140px;
+	height:86px;
+	margin:10px;
+}
+#limseckill .list .list_box .img img{
+	width:100%;
+	height:100%;
+}
+#limseckill .list .list_box .img .circleoutside{
+	position:absolute;
+	top:3px;
+	left:9px;
+	width:80px;
+	height:80px;
+	border-radius:100%;
+	background:rgba(0,0,0,0.5);
+}
+#limseckill .list .list_box .img .circleoutside .circleinside{
+	position:absolute;
+	top:4px;
+	left:4px;
+	width:70px;
+	height:70px;
+	border-radius:100%;
+	border:1px solid #FFF;
+	background:rgba(0,0,0,0.1);
+}
+#limseckill .list .list_box .img .circleoutside span{
+	position:absolute;
+	transform:rotate(-22deg);
+	color:#FFF;
+}
+#limseckill .list .list_box .img .circleoutside span:nth-child(2){
+	left:5px;
+	top:23px;
+	font-weight:normal;
+	font-size:12px;
+}
+#limseckill .list .list_box .img .circleoutside span:nth-child(3){
+	left:19px;
+	top:40px;
+	font-size:16px;
+}
+#limseckill .list .list_box .aside{
+	width:100%;
+	height:100%;
+	position:relative;
+	top:0;
+	left:0;
+}
+#limseckill .list .list_box .aside p{
+	position:absolute;
+	top:5px;
+	left:0;
+	width:99.6%;
+	font-size:13px;
+	color:#000;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+#limseckill .list .list_box .aside p:nth-child(2){
+	top:25px;
+	font-size:12px;
+	color:rgba(128,128,128,1);
+}
+
+#limseckill .list .list_box .aside .progress{
+	position:relative;
+	top:0;
+	left:0;
+	width:156px;
+	height: 14px;
+	margin-top:53px;
+	background: rgba(253,227,226,1);
+	border-radius: 20px;
+	border:2px solid rgba(254,188,186,1);
+}
+#limseckill .list .list_box .aside .progress.completed{
+	background:#FFF;
+	border:0;
+}
+#limseckill .list .list_box .aside .progress span{
+	position:absolute;
+	top:0;
+	font-size:12px;
+	line-height:14px;
+	color:rgba(214,44,41,1);
+}
+#limseckill .list .list_box .aside .progress .text1{
+	left:3px;
+}
+#limseckill .list .list_box .aside .progress .text2{
+	right:3px;
+}
+#limseckill .list .list_box .aside .progress .text3{
+	right:3px;
+	width:100%;
+	color:#FFF;
+	text-align:center;
+	font-style:italic;
+}
+#limseckill .list .list_box .aside .progress .text4{
+	left:0;
+	width:100%;
+	color:rgba(151,151,151,1);
+}
+/*进度条*/
+#limseckill .list .list_box .aside .progress .progress-box{
+	width:0;
+	height: 100%;
+	background: rgba(253,227,226,1);
+	border-radius: 20px;
+	background:linear-gradient(to right,rgba(234,58,55,1),rgba(249,114,55,1));
+	background:-webkit-linear-gradient(to right,rgba(234,58,55,1),rgba(249,114,55,1));
+}
+#limseckill .list .list_box .aside .progress .progress-box .progress-bar{
+	width:100%;
+	height:100%;
+	border-radius: 20px;
+	background-image:linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-size: 25px 25px;
+}
+#limseckill .list .list_box .aside .money{
+	margin-top:10px;
+}
+#limseckill .list .list_box .aside .money strong{
+	font-size:15px;
+	color:rgba(216,44,42,1);
+}
+#limseckill .list .list_box .aside .money span{
+	font-size:13px;
+	font-weight:bold;
+	color:rgba(216,44,42,1);
+}
+#limseckill .list .list_box .aside .money del{
+	font-size:13px;
+	color:rgba(128,128,128,1);
+}
+#limseckill .list .list_box .aside .money.completed strong,#limseckill .list .list_box .aside .money.completed span{
+	color:rgba(128,128,128,1);
+}
+#limseckill .list .list_box .aside .button{
+	position:absolute;
+	bottom:10px;
+	right:5px;
+	width:70px;
+	height:26px;
+	line-height:26px;
+	border-radius:5px;
+	cursor:pointer;
+	font-size:13px;
+	color:#FFF;
+	background:rgba(216,44,42,1);
+}
+#limseckill .list .list_box .aside .button .bgimg{
+	float:left;
+	width:16px;
+	height:16px;
+	margin:5px 0 0 6px;
+	background:url(./icon.png) no-repeat;
+	background-size:100% 100%;
+}
+#limseckill .list .list_box .aside .button .text{
+	float:left;
+	float:left;
+	width:45px;
+	height:20px;
+	text-align:left;
+	text-indent:2px;
+}
+#limseckill .list .list_box .aside .button.completed{
+	display:flex;
+	background:rgba(235,235,235,1);
+}
+#limseckill .list .list_box .aside .button.completed .text{
+	flex:1;
+	text-align:center;
+	color:rgba(171,171,171,1);
+}
+
+/*即将开抢*/
+#limseckill .list .forthcoming .aside .button{
+	background:none;
+	border:1px solid rgba(216,44,42,1);
+}
+#limseckill .list .forthcoming .aside .button .bgimg{
+	background:url(./icon2.png) no-repeat;
+	background-size:100% 100%;
+}
+#limseckill .list .forthcoming .aside .button .text{
+	color:rgba(216,44,42,1);
+}
+#limseckill .list .forthcoming .aside .progress.completed .text4{
+	color:rgba(216,44,42,1);
+}
+#limseckill .loading{
+	display:none;
+	width:100%;
+	height:40px;
+	font-size:13px;
+	text-align:center;
+	line-height:40px;
+	color:#a79d9d;
+	transition:all .5s;
+}
+#limseckill .loading em{
+	display:none;
+}
+</style>
+<body>
+	<section id="limseckill">
+		<nav class="nav">
+			<a href="javascript:" class="navactive" name="creazy">限时疯抢<span></span></a>
+			<a href="javascript:" name="start">即将开抢<span></span></a>	
+		</nav>
+		<section class="smark">明日00:00即将开抢</section>
+		<section class="count">
+			<h1 class="count_desc">距离结束还有</h1>
+			<section class="count_num">
+				<span>00</span>
+				<strong>:</strong>
+				<span>01</span>
+				<strong>:</strong>
+				<span>10</span>
+			</section>
+		</section>
+		<section class="list">
+			<section class="list_box">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress">
+						<div class="progress-box" style="width:10%">
+							<div class="progress-bar"></div>
+						</div>
+						<span class="text1">已抢841件</span>
+						<span class="text2">8%</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">马上秒</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress">
+						<div class="progress-box" style="width:80%">
+							<div class="progress-bar"></div>
+						</div>
+						<span class="text3">即将售罄</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">马上秒</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+					<section class="circleoutside">
+						<section class="circleinside"></section>
+						<span>SOLD OUT</span>
+						<span>秒光了</span>
+					</section>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress completed">
+						<span class="text4">22小时35分抢光3000件</span>
+					</div>
+					<section class="money completed">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button completed">
+						<span class="text">秒光了</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box forthcoming">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress completed">
+						<span class="text4">限量500件|279人已关注</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">提醒我</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box forthcoming">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress completed">
+						<span class="text4">限量500件|279人已关注</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">提醒我</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box forthcoming">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress completed">
+						<span class="text4">限量500件|279人已关注</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">提醒我</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box forthcoming">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress completed">
+						<span class="text4">限量500件|279人已关注</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">提醒我</span>
+					</section>
+				</aside>
+			</section>
+			<section class="list_box forthcoming">
+				<section class="img">
+					<a href="javascript:"><img src="./aa.png" /></a>
+				</section>
+				<aside class="aside">
+					<p>爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>
+					<p>演绎时尚魅惑，自信活力</p>
+					<div class="progress completed">
+						<span class="text4">限量500件|279人已关注</span>
+					</div>
+					<section class="money">
+						<span>￥</span><strong>12.9</strong>
+						<del>￥40</del>
+					</section>
+					<section class="button">
+						<span class="bgimg"></span>
+						<span class="text">提醒我</span>
+					</section>
+				</aside>
+			</section>
+		</section>
+		<section class="loading"><em>none</em>加载中...</section>
+	</section>
+
+
+<script language="javascript" type="text/javascript">
+	var limseckill = document.getElementById('limseckill');
+	var count = limseckill.querySelector('.count');//计时选择器
+	var _span = count.getElementsByTagName('span');
+	var count_desc = count.querySelector('.count_desc');
+	var nav = limseckill.querySelector('.nav');//tab选择器
+	var _a = nav.getElementsByTagName('a');
+	var smark = limseckill.querySelector('.smark');
+	var loading = limseckill.querySelector('.loading');
+	var loading_em = loading.getElementsByTagName('em');
+	var list = limseckill.querySelector('.list');
+	var param = {
+		defaultTab: true,//为true时默认选择限时疯抢，false时选择即将开抢
+		typeTap:'creazy',//creazy选择的是限时疯抢，start选择的是即将开始
+		isZero :false,
+		stopInter : '',
+		xmlHttp : '',//ajax实例
+		method : 'POST',//请求方式
+		url : 'ajax.txt',//请求url
+		async :true,//(true（异步）或 false（同步）)
+		dataSource :[],//数据源
+	}
+	//倒计时
+	function decrease(val){
+		var val = parseInt(val);
+		if(val>0){
+			val--;
+			return val>9 ? val : '0'+String(val);
+		}else{
+			return 59;
+		}
+	}
+	function setInter(){
+		if(_span[2].innerText === '00' && _span[1].innerText === '00' && _span[0].innerText === '00'){
+			clearInterval(param.stopInter);
+			return false;
+		}else{
+			_span[2].innerText = decrease(_span[2].innerText);
+			param.isZero = _span[1].innerText === '00' ? true : false;
+			_span[1].innerText = _span[2].innerText === '59' ? decrease(_span[1].innerText) : _span[1].innerText;
+			_span[0].innerText = _span[1].innerText === '59' && _span[0].innerText !== '00' && param.isZero ? decrease(_span[0].innerText) : _span[0].innerText;
+		}
+	}
+	//触发倒计时
+	function dispatchCount(){
+		return setInterval(setInter,1000);
+	}
+
+	//ajax(get 数据)
+	function ajax(callback){
+		if(window.XMLHttpRequest){//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+			param.xmlHttp = new XMLHttpRequest();
+		}else{
+			//IE6, IE5 浏览器执行代码
+			param.xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		param.xmlHttp.open(param.method,param.url,param.async);
+		param.xmlHttp.send();
+		param.xmlHttp.onreadystatechange = function(){
+			if(param.xmlHttp.readyState == 4 && param.xmlHttp.status == 200){
+				if(typeof(callback) == 'function'){
+					setTimeout(function(){
+						callback(eval(param.xmlHttp.responseText));
+					},2000)
+					
+				}
+			}
+		}
+	}
+
+	//dom
+	function dom(param){
+		clearInterval(param.stopInter);
+		if(param.typeTap === 'creazy'){//疯抢
+			smark.style.display = 'none';
+			count_desc.innerText = '距离结束还有';
+		}else{
+			smark.style.display = 'block';
+			count_desc.innerText = '距离开始还有';
+		}
+		param.dataSource.map(function(item,index,value){
+			list.innerHTML += listModel(item);
+		})
+		param.stopInter = dispatchCount();
+	}
+	for(var i=0;i<_a.length;i++){
+		_a[i].index = i;
+		_a[i].onclick = function(e){
+			e.preventDefault();
+			if(_a[this.index].className !== 'navactive'){
+				_a[this.index].className = 'navactive';
+				_a[_a.length-1 - this.index].className = '';
+				param.typeTap = _a[this.index].name;
+				dom(param);
+			}
+		}
+	}
+	//返回对应列表模板
+	function listModel(shopid){
+		var listboxClass,progressHtml,buttomHtml;
+		if(param.typeTap === 'creazy'){
+			listboxClass = '';
+			progressHtml = '<div class="progress">'+
+								'<div class="progress-box" style="width:10%">'+
+									'<div class="progress-bar"></div>'+
+								'</div>'+
+								'<span class="text1">已抢841件</span>'+
+								'<span class="text2">8%</span>'+
+							'</div>';
+			buttomHtml = '<section class="button" onclick="shopsMessage('+"'"+shopid+"'"+')">'+
+							'<span class="bgimg"></span>'+
+							'<span class="text">马上秒</span>'+
+						'</section>';
+		}else{
+			listboxClass ='forthcoming';
+			progressHtml = '<div class="progress completed">'+
+								'<span class="text4">限量500件|279人已关注</span>'+
+							'</div>';
+			buttomHtml = '<section class="button" onclick="remind('+"'"+shopid+"'"+')">'+
+							'<span class="bgimg"></span>'+
+							'<span class="text">提醒我</span>'+
+						'</section>';
+		}
+		return '<section class="list_box '+listboxClass+'">'+
+				'<section class="img">'+
+					'<a href="javascript:" onclick="shopsMessage('+"'"+shopid+"'"+')"><img src="./aa.png" /></a>'+
+				'</section>'+
+				'<aside class="aside">'+
+					'<p onclick="shopsMessage('+"'"+shopid+"'"+')">爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版爱他美奶粉白金版</p>'+
+					'<p onclick="shopsMessage('+"'"+shopid+"'"+')">演绎时尚魅惑，自信活力</p>'+
+					progressHtml+
+					'<section class="money">'+
+						'<span>￥</span><strong>12.9</strong>'+
+						'<del>￥40</del>'+
+					'</section>'+
+					buttomHtml+
+				'</aside>'+
+			'</section>';
+	}
+	//跳转至商品详情
+	function shopsMessage(shopid){
+		console.log('商品id' + shopid)
+	}
+	//提醒我
+	function remind(shopid){
+		console.log('触发提醒 商品id' + shopid)
+	}
+	//上拉加载
+	window.onscroll = function(){
+		if(loading_em[0].innerText == 'none'){
+			var scrollTop = document.body.scrollTop||document.documentElement.scrollTop;//滚动条距离顶部的高度
+			var scrollHeight = document.body.clientHeight;//当前页面的总高度
+			var windowHeight = document.documentElement.clientHeight;//当前可视的页面高度
+			if(scrollTop + windowHeight === scrollHeight){
+				loading.style.display = 'block';
+				loading_em[0].innerText = 'block';
+				ajax(function(result){
+					loading.style.display = 'none';
+					loading_em[0].innerText = 'none';
+					param.dataSource = result;
+					dom(param);
+				})
+			}
+		}
+	}
+
+	//初始化
+	ajax(function(result){
+		param.dataSource = result;
+		dom(param);
+	})
+
+</script>
+</body>
+</html>

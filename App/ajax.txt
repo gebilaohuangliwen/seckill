@@ -1,0 +1,92 @@
+[
+        {
+            "id": "1",
+            "activity_item_id": "4",
+            "goods_id": "3251",
+            "point_deduction": "3.00",
+            "goods_total": "3",
+            "market_price": "3.21",
+            "attraction": "快来买",
+            "user_max": "1",
+            "goods_sales": "0",
+            "sort": "1",
+            "status": "0",
+            "mall_goods": {
+                "goods_sn": "GD1000003251",
+                "supplier_id": "0",
+                "goods_thumb": "https://ewg-ueditor.oss-cn-shenzhen.aliyuncs.com/goods/thumb/PJJ5o78P772KpNzpK3iUn8c7rYp3V2.jpg",
+                "type": "1",
+                "market_price": "585.00",
+                "plus_price": "-1.00",
+                "product_price": "799.00",
+                "cost_price": "530.93",
+                "tax": "15.00",
+                "is_tax": "1",
+                "is_option": "0",
+                "status": "1",
+                "goods_weight": "0",
+                "product_sn": "",
+                "product_origin": "",
+                "d_template_id": "1",
+                "goods_title": {
+                    "CN": "（5盒）丹麦雀巢Nestle pro奶粉3段700g"
+                },
+                "goods_unit": {
+                    "CN": ""
+                },
+                "category": "[母婴儿童][宝宝奶粉]",
+                "supplier_name": {
+                    "CN": "官方自营",
+                    "EN": "Official Self-management",
+                    "TW": "官方自營"
+                },
+                "point_deduction": 123,
+                "brand_class": "普通商品"
+            }
+        },
+        {
+            "id": "2",
+            "activity_item_id": "5",
+            "goods_id": "3252",
+            "point_deduction": "3.00",
+            "goods_total": "3",
+            "market_price": "3.21",
+            "attraction": "快来买",
+            "user_max": "1",
+            "goods_sales": "0",
+            "sort": "1",
+            "status": "0",
+            "mall_goods": {
+                "goods_sn": "GD1000003251",
+                "supplier_id": "0",
+                "goods_thumb": "https://ewg-ueditor.oss-cn-shenzhen.aliyuncs.com/goods/thumb/PJJ5o78P772KpNzpK3iUn8c7rYp3V2.jpg",
+                "type": "1",
+                "market_price": "585.00",
+                "plus_price": "-1.00",
+                "product_price": "799.00",
+                "cost_price": "530.93",
+                "tax": "15.00",
+                "is_tax": "1",
+                "is_option": "0",
+                "status": "1",
+                "goods_weight": "0",
+                "product_sn": "",
+                "product_origin": "",
+                "d_template_id": "1",
+                "goods_title": {
+                    "CN": "（5盒）丹麦雀巢Nestle pro奶粉3段700g"
+                },
+                "goods_unit": {
+                    "CN": ""
+                },
+                "category": "[母婴儿童][宝宝奶粉]",
+                "supplier_name": {
+                    "CN": "官方自营",
+                    "EN": "Official Self-management",
+                    "TW": "官方自營"
+                },
+                "point_deduction": 123,
+                "brand_class": "普通商品"
+            }
+        }
+    ]
